@@ -1,0 +1,64 @@
+<div class="d-flex" id="wrapper">
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-light">Secretaria</div>
+                <div class="list-group list-group-flush">
+                    <a id="cad" class="list-group-item list-group-item-action list-group-item-light p-3" (click)='showProf()'>Professores</a>
+                    <a id="alt" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showMat()">Matérias</a>
+                    <a id="des" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showTurma()">Turmas</a>
+                    <a id="exc" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showAluno()">Alunos</a>
+                    <a id="lis" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showNotas()">Notas</a>
+                    <a id="bus" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="reset()">Recarregar</a>
+                </div>
+            </div>
+            <div id="page-content-wrapper">
+                <div id="Prof" class="container-fluid" style="display: none;">
+                  <app-professores></app-professores>
+                </div>
+                <div id="Mat" class="container-fluid" style="display: none;">
+                  <app-materias></app-materias>
+                </div>
+                <div id="Turma" class="container-fluid" style="display: none;">
+                  <app-turmas></app-turmas>
+                </div>
+                <div id="Aluno" class="container-fluid" style="display: none;">
+                  <app-alunos></app-alunos>
+                </div>
+                <div id="Notas" class="container-fluid" style="display: none;">
+                  <app-notas></app-notas>
+                </div>
+                <div id="inicio" class="container-fluid">
+                  <h1>Escola Processo seletivo</h1>
+                  <hr>
+                  <h2>Apresentação</h2>
+                  <p>
+                    Nesse projeto existem algumas falhas de apresentação visual devido ao fato de esta ser minha primeira tentativa de criar uma aplicação com angular.
+                  </p>
+                  <hr>
+                  <h2>Observações</h2>
+                  <ul>
+                    <li>
+                      <p>
+                        Devido as especificaçõesdo documento do processo seletivo pedindo que a api no backend fosse um projeto separado desse projeto no front, eu recebi muitos erros CORS enquanto testava a integração no modo de navegação comum, mesmo quando o Postman inicava que a api estava funcionando normalmente.
+                        Caso alguma tabela, não esteja carregando, siga as instuções do arquivo readme.md na pasta escola e inicialize o navegador chrome no modo de segurança web desabilitada.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        O campo de texto usado para cadastro também é necessário para as operações de atualização de elementos nas tabelas.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        O framework no qual a aplicação foi feita está na versão 14 pois eu não consegui encontrar um modo de instalar a versão 7 requerida a tempo de refazer a aplicação para a entrega.
+                      </p>
+                    </li>
+                  </ul>
+                  <hr>
+                  <h2>Agradecimento</h2>
+                  <p>
+                    Agradeço pela oportunidade de realizar esse processo seletivo e pela extenção do prazo de entrega que me foi dada. Espero que meu projeto esteja de acordo com as suas expectativas e que eu possa estar trabalhando com vocês em breve.
+                  </p>
+                </div>
+            </div>
+        </div>
+<router-outlet></router-outlet>

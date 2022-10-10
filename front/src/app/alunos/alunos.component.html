@@ -1,0 +1,28 @@
+<h1>Alunos</h1>
+<h2>Cadastro de Alunos:</h2>
+<hr>
+<form action="">
+  <p>Nome: <input type="text" name="nomeAluno" [(ngModel)]="aluno.nome"></p>
+  <p>Turma: <input type="text" name="TurmaAluno" [(ngModel)]="aluno.idturma"></p>
+  <button type="button" (click)="AddAlunos(aluno.nome,aluno.idturma)">Cadastrar</button>
+</form>
+<h2>Alunos Cadastrados:</h2>
+<hr>
+<table>
+  <tr>
+    <th>#ID</th>
+    <th>Nome</th>
+    <th>Ativo</th>
+    <th>Turma</th>
+    <th colspan="3">Funções</th>
+  </tr>
+  <tr *ngFor="let alun of alunos">
+    <td>{{alun.id}}</td>
+    <td>{{alun.nome}}</td>
+    <td>{{alun.ativo}}</td>
+    <td>{{alun.idturma}}</td>
+    <td><button type="button" (click)="alterarAluno(alun.id,alun.nome,aluno.idturma)">Alterar</button></td>
+    <td><button type="button" (click)="desativarAluno(alun.id, alun.ativo, alun.idturma)">Ativar/Desativar</button></td>
+    <td><button type="button" (click)="excluirAluno(alun.id)">Excluir</button></td>
+  </tr>
+</table>
