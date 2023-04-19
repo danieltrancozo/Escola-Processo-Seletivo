@@ -1,4 +1,4 @@
-# Escola-Processo-Seletivo
+d# Escola-Processo-Seletivo
 
 Esse é o projeto para o processo seletivo conforme pedido. um front-end em angular 6+ (14), e um back-end em c#.
 
