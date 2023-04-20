@@ -24,7 +24,7 @@ export class TurmasService {
     return this.httpClient.get(environment.alunosURL);
   }
   updateTurma(id: Number, ct: Number): Observable<any>{
-    return this.httpClient.put(environment.turmasUrl+'/update/'+id+'/'+ct,null);
+    return this.httpClient.put(environment.turmasUrl+'/update/'+id+'/'+ct, null);
   }
   excluirTurma(id: Number): Observable<any>{
     return this.httpClient.delete(environment.turmasUrl+'/'+id);

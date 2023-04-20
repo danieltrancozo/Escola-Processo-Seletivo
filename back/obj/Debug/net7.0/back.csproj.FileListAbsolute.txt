@@ -67,3 +67,9 @@ E:\repos\Escola-Processo-Seletivo\back\obj\Debug\net7.0\refint\back.dll
 E:\repos\Escola-Processo-Seletivo\back\obj\Debug\net7.0\back.pdb
 E:\repos\Escola-Processo-Seletivo\back\obj\Debug\net7.0\back.genruntimeconfig.cache
 E:\repos\Escola-Processo-Seletivo\back\obj\Debug\net7.0\ref\back.dll
+E:\repos\Escola-Processo-Seletivo\back\bin\Debug\net7.0\System.Web.Cors.dll
+E:\repos\Escola-Processo-Seletivo\back\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+E:\repos\Escola-Processo-Seletivo\back\bin\Debug\net7.0\System.Web.Http.dll
+E:\repos\Escola-Processo-Seletivo\back\bin\Debug\net7.0\System.Web.Http.Cors.dll
+E:\repos\Escola-Processo-Seletivo\back\bin\Debug\net7.0\Newtonsoft.Json.dll
+E:\repos\Escola-Processo-Seletivo\back\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
