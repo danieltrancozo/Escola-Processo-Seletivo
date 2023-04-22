@@ -5,10 +5,10 @@ namespace back.Models
     public class Prof
     {
         [Key]
-            public int id{get; set;}
+        public int id{get; set;}
 
         [Required]
-            public string name {get; set;}
-        public bool ativo {get;set;}
+        public string name {get; set;}
+        public bool active {get;set;}
     }
 }

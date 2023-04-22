@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  profsUrl: 'http://localhost:5001/v1/profs',
-  turmasUrl: 'http://localhost:5001/v1/turmas',
-  alunosURL: 'http://localhost:5001/v1/alunos',
-  matURL: 'http://localhost:5001/v1/materias',
-  notasURL: 'http://localhost:5001/v1/notas'
+  teachersUrl: 'http://localhost:5001/v1/profs',
+  classesUrl: 'http://localhost:5001/v1/classes',
+  studentsURL: 'http://localhost:5001/v1/students',
+  matURL: 'http://localhost:5001/v1/subjects',
+  notasURL: 'http://localhost:5001/v1/grades'
 };
 
 /*

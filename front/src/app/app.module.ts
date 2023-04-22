@@ -4,25 +4,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfessoresComponent } from './professores/professores.component';
-import { MateriasComponent } from './materias/materias.component';
-import { TurmasComponent } from './turmas/turmas.component';
-import { AlunosComponent } from './alunos/alunos.component';
-import { NotasComponent } from './notas/notas.component';
-import { ProfessoresService } from './professores.service';
-import { MateriasService } from './materias.service';
-import { TurmasService } from './turmas.service';
-import { AlunosService } from './alunos.service';
-import { NotasService } from './notas.service';
+import { TeachersComponent } from './teachers/teachers.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { ClassesComponent } from './classes/classes.component';
+import { StudentsComponent } from './students/students.component';
+import { GradesComponent } from './grades/grades.component';
+import { TeachersService } from './teachers.service';
+import { SubjectsService } from './subjects.service';
+import { ClassesService } from './classes.service';
+import { StudentsService } from './students.service';
+import { GradesService } from './grades.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfessoresComponent,
-    MateriasComponent,
-    TurmasComponent,
-    AlunosComponent,
-    NotasComponent
+    TeachersComponent,
+    SubjectsComponent,
+    ClassesComponent,
+    StudentsComponent,
+    GradesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +34,7 @@ import { NotasService } from './notas.service';
       headerName: 'X-XSRF-TOKEN'
     })
   ],
-  providers: [ProfessoresService, MateriasService, TurmasService, AlunosService, NotasService, HttpClientModule],
+  providers: [TeachersService, SubjectsService, ClassesService, StudentsService, GradesService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,78 @@
+<h1>Turmas</h1>
+<h2>Cadastro de turmas:</h2>
+<hr>
+<form action="">
+  <p>Quntidade de Alunos: <input type="text" name="VolumeTurma" [(ngModel)]="turma.volume"></p>
+  <button type="button" (click)="cadastrarTurma(turma.volume)">Cadastrar</button>
+</form>
+<h2>Turmas Cadastradas:</h2>
+<hr>
+<table>
+  <tr>
+    <th>#ID</th>
+    <th>Quantidade de Alunos</th>
+    <th>Ativo</th>
+    <th colspan="3">Funções</th>
+  </tr>
+  <tr *ngFor="let turms of turms">
+    <td>{{turms.id}}</td>
+    <td>{{turms.volume}}</td>
+    <td>{{turms.ativo}}</td>
+    <td><button type="button" (click)="DeactivateClass(turms.id, turms.ativo)">Ativar/Desativar</button></td>
+    <td><button type="button" (click)="DeleteClass(turms.id)">Excluir</button></td>
+    <td><button type="button" (click)="ShowClass(turms.id)">Exibir alunos</button>
+  </tr>
+</table>
+<div id="students">
+  <div id="e1"><button type="button" class="btn btn-danger" (click)="e1()">X</button></div>
+  <div id="tabelaTurma">
+    <h2 id="titulo"></h2>
+    <table id="chamada" class="t2">
+      <tr>
+        <th>#ID</th>
+        <th>Nome</th>
+        <th>Ativo</th>
+        <th>Aprovado</th>
+        <th>Final</th>
+        <th colspan="2">Funções</th>
+      </tr>
+      <tr *ngFor="let aluns of students">
+        <td>{{aluns.id}}</td>
+        <td>{{aluns.name}}</td>
+        <td>{{aluns.active}}</td>
+        <td>{{aluns.aproved}}</td>
+        <td>{{aluns.final}}</td>
+        <td><button type="button" (click)="boletin(aluns.id)">Boletin</button></td>
+        <td><button type="button" (click)="Simular(aluns.id)">Simular</button></td>
+    </table>
+  </div>
+</div>
+<div id="boletin">
+  <div id="e2"><button type="button" class="btn btn-danger" (click)="e2()">X</button></div>
+  <div id="TabelaBoletin">
+    <h2></h2>
+    <hr>
+    <h2></h2>
+    <table *ngFor="let notas of notas" class="t2">
+      <tr>
+        <th colspan="6">{{subjectsName()}}</th>
+      </tr>
+      <tr>
+        <th>AV1</th>
+        <th>AV2</th>
+        <th>AV3</th>
+        <th>Média</th>
+        <th>VF</th>
+        <th>Media final</th>
+      </tr>
+      <tr>
+        <td>{{notas.av1}}</td>
+        <td>{{notas.av2}}</td>
+        <td>{{notas.av3}}</td>
+        <td>{{media()}}</td>
+        <td>{{notas.avf}}</td>
+        <td>{{mediafinal()}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

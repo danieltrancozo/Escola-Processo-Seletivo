@@ -13,14 +13,14 @@ namespace back.Controllers{
         [HttpGet]
         [Route(template:"profs")]
         public async Task<IActionResult> GetAsync([FromServices] DataContext context){
-            var profs = await context.professores.AsNoTracking().ToListAsync();
+            var profs = await context.teachers.AsNoTracking().ToListAsync();
             if(profs==null) NotFound();
             return Ok(profs);
         }
         [HttpGet]
         [Route(template:"profs/{id}")]
         public async Task<IActionResult> GetByIdAsync([FromServices] DataContext context, [FromRoute]int id){
-            var prof = await context.professores.AsNoTracking().FirstOrDefaultAsync(x=>x.id==id);
+            var prof = await context.teachers.AsNoTracking().FirstOrDefaultAsync(x=>x.id==id);
             return prof == null ? NotFound() : Ok(prof);
         }
         [HttpPost(template:"profs")]
@@ -31,9 +31,9 @@ namespace back.Controllers{
             else{
                 var prof = new Prof{
                     name = model.name,
-                    ativo = true
+                    active = true
                 };
-                await context.professores.AddAsync(prof);
+                await context.teachers.AddAsync(prof);
                 await context.SaveChangesAsync();
                 return Created(uri:$"v1/profs/{prof.id}",prof);
                 }
@@ -41,29 +41,29 @@ namespace back.Controllers{
         [HttpPut(template:"profs/{id}/{name}")]
         public async Task<IActionResult> NamePutAsync([FromServices] DataContext context, [FromRoute] int id, 
         [FromRoute] string name){
-            var prof =await context.professores.AsNoTracking().FirstOrDefaultAsync(x=>x.id==id);
+            var prof =await context.teachers.AsNoTracking().FirstOrDefaultAsync(x=>x.id==id);
             if(prof == null)
                 return NotFound();
             prof.name = name;
-            context.professores.Update(prof);
+            context.teachers.Update(prof);
             await context.SaveChangesAsync();
             return Ok();
         }
         [HttpPut(template:"profs/{id},{at}")]
         public async Task<IActionResult> PuttAsync([FromServices] DataContext context,
         [FromRoute] int id,[FromRoute] bool at){
-                var prof = await context.professores.AsNoTracking().FirstOrDefaultAsync(x=>x.id==id);
+                var prof = await context.teachers.AsNoTracking().FirstOrDefaultAsync(x=>x.id==id);
                 if(prof == null)
                     return NotFound();
-                prof.ativo=at;
-                context.professores.Update(prof);
+                prof.active=at;
+                context.teachers.Update(prof);
                 await context.SaveChangesAsync();
                 return Ok();
             }
         [HttpDelete(template:"profs/{id}")]
         public async Task<ActionResult> DeleteAsync([FromServices] DataContext context, [FromRoute] int id){
-            var prof = await context.professores.FirstOrDefaultAsync(x=>x.id==id);
-            context.professores.Remove(prof);
+            var prof = await context.teachers.FirstOrDefaultAsync(x=>x.id==id);
+            context.teachers.Remove(prof);
             await context.SaveChangesAsync();
             return Ok(prof);
         }

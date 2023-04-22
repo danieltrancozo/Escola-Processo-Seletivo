@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TR46S59i9f4GnuT2ZqFS/bdV/UOZ1+NM7md8oFe4/uFLDsZBFIdtKVPdPDBUvtMvqrOAZaX0nedse5iOrHjbdQ==",
+  "dgSpecHash": "NRi2Gd09oT4HXHmqFWSjQX69KhTG87vF9czfc2HWStk3EiHRHsEAkMLA3z2sEC3HGcxsdFy444+Z8+vyf6aF0w==",
   "success": true,
   "projectFilePath": "E:\\repos\\Escola-Processo-Seletivo\\back\\back.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.5\\microsoft.entityframeworkcore.relational.7.0.5.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\7.0.5\\microsoft.entityframeworkcore.sqlite.7.0.5.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\7.0.5\\microsoft.entityframeworkcore.sqlite.core.7.0.5.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.5\\microsoft.entityframeworkcore.tools.7.0.5.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
