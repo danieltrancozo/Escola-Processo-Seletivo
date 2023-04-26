@@ -1,4 +1,4 @@
 export class studentModel{
-  'nome': String;
-  'idClass': Number;
+  'name': String;
+  'idclass': Number;
 }

@@ -7,8 +7,8 @@ export const environment = {
   teachersUrl: 'http://localhost:5001/v1/profs',
   classesUrl: 'http://localhost:5001/v1/classes',
   studentsURL: 'http://localhost:5001/v1/students',
-  matURL: 'http://localhost:5001/v1/subjects',
-  notasURL: 'http://localhost:5001/v1/grades'
+  subjectsURL: 'http://localhost:5001/v1/subjects',
+  gradesURL: 'http://localhost:5001/v1/grades'
 };
 
 /*

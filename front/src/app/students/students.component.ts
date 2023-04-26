@@ -3,7 +3,7 @@ import { StudentsService } from '../students.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-Students',
+  selector: 'app-students',
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css']
 })
@@ -12,13 +12,14 @@ export class StudentsComponent implements OnInit {
   constructor(private StudentsService: StudentsService) { }
   students: Array<any> =  new Array
   student: studentModel = new studentModel()
+  stcr: studentModel = new studentModel()
 
   ngOnInit(): void {
     this.ListStudents()
   }
-  AddStudents(nome: String, idt: Number){
-    this.StudentsService.InputStudent(this.student).subscribe(st=>{
-      this.student = new studentModel
+  AddStudents(stc: studentModel){
+    this.StudentsService.InputStudent(this.stcr).subscribe(st=>{
+      this.stcr = new studentModel
       this.ListStudents()
     }, Error=>{
       console.log('Erro ao cadastrar Student', Error)
@@ -31,9 +32,13 @@ export class StudentsComponent implements OnInit {
       console.log('Erro ao cadastrar Students', error)
     });
   }
-  UpdateStudent(id: Number, no: string, tu: Number){
-    this.StudentsService.UpdateStudent(id,no,tu).subscribe(
-      aluns=>{
+  UpdateStudent(id: Number, st: studentModel, stc: studentModel){
+    let na;
+    let cl;
+    stc.name != null ? na = String(stc.name) : na = String(st.name);
+    stc.idclass != null ? cl = stc.idclass : cl = st.idclass;
+    this.StudentsService.UpdateStudent(id,na,cl).subscribe(
+      students=>{
         this.student = new studentModel
         this.ListStudents()
       },error=>{

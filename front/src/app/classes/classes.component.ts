@@ -7,22 +7,23 @@ import { GradesModel } from '../grades/grades.model';
 import { delay } from 'rxjs';
 
 @Component({
-  selector: 'app-Classes',
+  selector: 'app-classes',
   templateUrl: './classes.component.html',
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent implements OnInit {
 
-  turms: Array<any> = new Array
+  classes: Array<any> = new Array
   class: classesModel = new classesModel()
+  clcr: classesModel = new classesModel()
   students: Array<any> =  new Array
   student: studentModel = new studentModel()
   grades: Array<any> = new Array
-  nota: GradesModel = new GradesModel()
+  grade: GradesModel = new GradesModel()
   temp: any;
   b: any;
   t: any;
-  titulo: any;
+  title: any;
 
   constructor(private ClassesService: ClassesService) { }
 
@@ -30,17 +31,18 @@ export class ClassesComponent implements OnInit {
     this.ListClasses();
     this.b = document.getElementById('boletin')
     this.t = document.getElementById('students')
-    this.titulo = document.getElementById('titulo')
-    var here = document.getElementById('Class')
+    this.title = document.getElementById('title')
   }
   CreateClass(vol: Number){
-    console.log(this.class);
-    this.ClassesService.CreateClass(this.class).subscribe(cls=>{
-      this.class= new classesModel;
-      this.temp = cls;
-    }, Error=>{
-      console.log('Erro ao cadastrar Turma!',Error);
-    });
+    console.log(this.clcr);
+    this.ClassesService
+        .CreateClass(this.clcr)
+        .subscribe(cls=>{
+          this.clcr= new classesModel;
+          this.temp = cls;
+        }, Error=>{
+          console.log('Erro ao cadastrar Turma!',Error);
+        });
     this.ListClasses();
   }
   DeactivateClass(id: Number, at: boolean){
@@ -51,7 +53,7 @@ export class ClassesComponent implements OnInit {
       console.log('Erro ao ativar/desativar Turma!', Error);
     })
   }
-  excluirClass(id: Number){
+  DeleteClass(id: Number){
     this.ClassesService.DeleteClass(id).subscribe(Classes=>{
       this.ListClasses();
     }, Error=>{
@@ -60,12 +62,12 @@ export class ClassesComponent implements OnInit {
   }
   ShowClass(id: Number){
     this.t.style.display = 'inline';
-    this.titulo.innerText='Lista de students da Turma '+ id +'!';
-    this.ClassesService.ShowClass().subscribe(aluns=>{
+    this.title.innerText='Lista de alunos da Turma '+ id +'!';
+    this.ClassesService.ShowClass().subscribe(students=>{
       let a = [];
-      this.students = aluns;
+      this.students = students;
       for(let i=0;i<this.students.length;i++){
-        if(this.students[i].idClass==id){
+        if(this.students[i].idclass==id){
           a.push(this.students[i]);
         }
       }
@@ -74,7 +76,7 @@ export class ClassesComponent implements OnInit {
       this.updateClasses(id)
       this.ListClasses()
     }, Error=>{
-      console.log('Erro ao listar students!',Error);
+      console.log('Erro ao listar alunos!',Error);
     })
   }
   addStudent(id: Number, vol: Number){//função falhou!
@@ -82,8 +84,8 @@ export class ClassesComponent implements OnInit {
     let s = new studentModel
     let v = Number(vol)
     for(let i = 0; i < v; i++){
-      s.nome = 'student'+i;
-      s.idClass = id;
+      s.name = 'student'+i;
+      s.idclass = id;
       this.ClassesService.InputStudent(s)
     }
     return(vol)
@@ -102,11 +104,11 @@ export class ClassesComponent implements OnInit {
   media(){}
   mediafinal(){}
   updateClasses(id: Number){
-    this.ClassesService.ShowClass().subscribe(aluns=>{
+    this.ClassesService.ShowClass().subscribe(students=>{
       let a = [];
-      this.students = aluns;
+      this.students = students;
       for(let i=0;i<this.students.length;i++){
-        if(this.students[i].idClass==id){
+        if(this.students[i].idclass==id){
           a.push(this.students[i]);
         }
       }
@@ -115,8 +117,8 @@ export class ClassesComponent implements OnInit {
     this.ClassesService.UpdateClass(id,this.students.length).subscribe();
   }
   ListClasses(){
-    this.ClassesService.ListClasses().subscribe(Turms=>{
-      this.turms = Turms;
+    this.ClassesService.ListClasses().subscribe(Classes=>{
+      this.classes = Classes;
     },Error=>{
       console.log('Erro ao listar turmas!',Error);
       alert('Erro ao carregar a lista de Classes pode significar que ocorreu um erro de CORS! Tente reabrir no navegador com o web-security desativado.')

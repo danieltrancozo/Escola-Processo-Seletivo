@@ -2,8 +2,8 @@
 <h2>Cadastro de Professores:</h2>
 <hr>
 <form action="">
-  <p>Nome: <input type="text" name="nomeProfessor" [(ngModel)]="prof.name"></p>
-  <button type="button" (click)="cadastrarProf()">Cadastrar</button>
+  <p>Nome: <input type="text" name="NameTeacher" [(ngModel)]="teacher.name"></p>
+  <button type="button" (click)="CreateTeacher()">Cadastrar</button>
 </form>
 <h2>Professores Cadastrados:</h2>
 <hr>
@@ -14,12 +14,12 @@
     <th>Ativo</th>
     <th colspan="3">Funções</th>
   </tr>
-  <tr *ngFor="let profs of teachers">
-    <td>{{profs.id}}</td>
-    <td>{{profs.name}}</td>
-    <td>{{profs.active}}</td>
-    <td><button type="button" (click)="Update(profs.id)">Alterar</button></td>
-    <td><button type="button" (click)="DeactivateTeacher(profs.id, profs.ativo)">Ativar/Desativar</button></td>
-    <td><button type="button" (click)="DeleteTeacher(profs.id)">Excluir</button></td>
+  <tr *ngFor="let teacher of teachers">
+    <td>{{teacher.id}}</td>
+    <td>{{teacher.name}}</td>
+    <td>{{teacher.active}}</td>
+    <td><button type="button" (click)="UpdateTeacher(teacher.id)">Alterar</button></td>
+    <td><button type="button" (click)="DeactivateTeacher(teacher.id, teacher.ativo)">Ativar/Desativar</button></td>
+    <td><button type="button" (click)="DeleteTeacher(teacher.id)">Excluir</button></td>
   </tr>
 </table>

@@ -9,17 +9,17 @@ import { TeachersModel } from './teachers.model';
 })
 export class TeachersComponent implements OnInit {
 
-  profs: Array<any> = new Array
-  prof: TeachersModel = new TeachersModel()
+  teachers: Array<any> = new Array
+  teacher: TeachersModel = new TeachersModel()
   constructor(private teachersService: TeachersService) { }
 
   ngOnInit(): void {
     this.ListTeachers();
   }
   CreateTeacher(){
-    console.log(this.prof);
-    this.teachersService.CreateTeacher(this.prof).subscribe(Prof=>{
-      this.prof= new TeachersModel;
+    console.log(this.teacher);
+    this.teachersService.CreateTeacher(this.teacher).subscribe(Teacher=>{
+      this.teacher= new TeachersModel;
       this.ListTeachers();
       alert("Professor cadastrado com sucesso!");
     }, Error=>{
@@ -27,8 +27,8 @@ export class TeachersComponent implements OnInit {
     })
   }
   UpdateTeacher(id: Number){
-    this.teachersService.UpdateTeacher(id,this.prof.name.toString()).subscribe(teachers =>{
-      this.prof=new TeachersModel();
+    this.teachersService.UpdateTeacher(id,this.teacher.name.toString()).subscribe(teachers =>{
+      this.teacher=new TeachersModel();
       this.ListTeachers();
       alert("Professor atualizado com sucesso!");
     },Error=>{console.log("Error ao atualizar professor!", Error);})
@@ -52,8 +52,8 @@ export class TeachersComponent implements OnInit {
     })
   }
   ListTeachers(){
-    this.teachersService.ListTeachers().subscribe(Profs=>{
-      this.profs = Profs;
+    this.teachersService.ListTeachers().subscribe(teachers=>{
+      this.teachers = teachers;
     },Error=>{
       console.log('Erro ao listar professores!',Error);
       alert('Erro ao carregar a lista de professores pode significar que ocorreu um erro de CORS! Tente reabrir no navegador com o web-security desativado.')
