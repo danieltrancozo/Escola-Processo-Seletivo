@@ -1,1 +1,33 @@
-<p>materias works!</p>
+<h1>Matérias</h1>
+<h2>Cadastro de Matérias:</h2>
+<form action="">
+  <p>Nome: <input type="text" name="SubjectName" id="SubjectName" [(ngModel)]="subcreate.name"></p>
+  <p>Id do Professor: <input type="text" name="SubjectIdProf" id="SubjectIdProf" [(ngModel)]="subcreate.idprof"></p>
+  <p>Peso de AV1: <input type="text" name="SubjectW1" id="SubjectW1" [(ngModel)]="subcreate.w1"></p>
+  <p>Peso de AV2: <input type="text" name="SubjectW2" id="SubjectW2" [(ngModel)]="subcreate.w2"></p>
+  <p>Peso de AV3: <input type="text" name="SubjectW3" id="SubjectW3" [(ngModel)]="subcreate.w3"></p>
+  <button type="button" (click)="AddSubject(subcreate)">Cadastrar</button>
+</form>
+<h2>Matérias Cadastradas:</h2>
+<hr>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Id-Professor</th>
+    <th>Peso 1</th>
+    <th>Peso 2</th>
+    <th>Peso 3</th>
+    <th colspan="2">controles</th>
+  </tr>
+  <tr *ngFor="let subject of subjects">
+    <td>{{subject.id}}</td>
+    <td>{{subject.name}}</td>
+    <td>{{subject.idprof}}</td>
+    <td>{{subject.w1}}</td>
+    <td>{{subject.w2}}</td>
+    <td>{{subject.w3}}</td>
+    <td><button type="button" (click)="UpdateSubject(subject,subcreate)">Alterar</button></td>
+    <td><button type="button" (click)="DeleteSubject(subject.id)">Deletar</button></td>
+  </tr>
+</table>
