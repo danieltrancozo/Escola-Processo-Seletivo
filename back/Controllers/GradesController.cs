@@ -43,11 +43,11 @@ namespace back.Controllers{
                 return Created(uri:$"v1/grades/{grade.Id}",grade);
             }
         }
-        [HttpPut(template:"grades/{id}/{p}/{no}")]
+        [HttpPut(template:"grades/{id}/{a}/{gr}")]
         public async Task<IActionResult> PutNoAsync([FromServices] DataContext context,
-        [FromRoute] int id,[FromRoute] int p, [FromRoute] double gr){
+        [FromRoute] int id,[FromRoute] int a, [FromRoute] double gr){
             var grade = await context.grades.AsNoTracking().FirstOrDefaultAsync(x=>x.Id==id);
-            switch(p){
+            switch(a){
                  case 1:
                     grade.av1=gr;
                     break;

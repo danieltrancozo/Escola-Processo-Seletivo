@@ -1,1 +1,42 @@
-<p>notas works!</p>
+<h1>Notas</h1>
+<h2>Cadastro de Notas</h2>
+<hr>
+<form action="">
+  <p>Id do Aluno: <input type="text" name="IdStudent" [(ngModel)]="gradeUp.idstudent"></p>
+  <p>Id da Matéria: <input type="text" name="IdSubject" [(ngModel)]="gradeUp.idsubject"></p>
+  <p>Avaliação 1: <input type="text" name="Avaliation1" [(ngModel)]="gradeUp.av1"></p>
+  <p>Avaliação 2: <input type="text" name="Avaliation2" [(ngModel)]="gradeUp.av2"></p>
+  <p>Avaliação 3: <input type="text" name="Avaliation3" [(ngModel)]="gradeUp.av3"></p>
+  <p>Avaliação Final: <input type="text" name="FinalAvaliation" [(ngModel)]="gradeUp.avf"></p>
+  <button type="button" (click)="CreateGrade(gradeUp)">Cadastrar Nota</button>
+</form>
+<h2>Notas Cadastradas:</h2>
+<hr>
+<table>
+  <tr>
+    <th>#ID</th>
+    <th>Id-Aluno</th>
+    <th>Id-Matéria</th>
+    <th>Av1</th>
+    <th>Av2</th>
+    <th>Av3</th>
+    <th>AvF</th>
+    <th>Aprovado</th>
+    <th>Final</th>
+    <th colspan="3">Controles</th>
+  </tr>
+  <tr *ngFor="let grade of grades">
+    <td>{{grade.id}}</td>
+    <td>{{grade.idstudent}}</td>
+    <td>{{grade.idsubject}}</td>
+    <td>{{grade.av1}}</td>
+    <td>{{grade.av2}}</td>
+    <td>{{grade.av3}}</td>
+    <td>{{grade.avf}}</td>
+    <td>{{grade.aproved}}</td>
+    <td>{{grade.final}}</td>
+    <td><button type="button" (click)="GiveGrades(grade,gradeUp)">Lançar Nota</button></td>
+    <td><button type="button" (click)="FinalGrade(grade.id,gradeUp.avf)">Lançar AvF</button></td>
+    <td><button type="button" (click)="DeleteGrade(grade.id)">Delete Notas</button></td>
+  </tr>
+</table>

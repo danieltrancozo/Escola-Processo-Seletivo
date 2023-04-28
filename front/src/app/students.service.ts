@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { identity, Observable } from 'rxjs';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { environment } from '../environments/environment';
-import { classesModel } from './classes/classes.model';
 import { studentModel } from './students/students.model';
 
 @Injectable({
