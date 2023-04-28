@@ -2,31 +2,31 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Secretaria</div>
                 <div class="list-group list-group-flush">
-                    <a id="cad" class="list-group-item list-group-item-action list-group-item-light p-3" (click)='showProf()'>Professores</a>
-                    <a id="alt" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showMat()">Matérias</a>
-                    <a id="des" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showTurma()">Turmas</a>
-                    <a id="exc" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showAluno()">Alunos</a>
-                    <a id="lis" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showNotas()">Notas</a>
+                    <a id="cad" class="list-group-item list-group-item-action list-group-item-light p-3" (click)='showTeachers()'>Professores</a>
+                    <a id="alt" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showSubjects()">Matérias</a>
+                    <a id="des" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showClasses()">Turmas</a>
+                    <a id="exc" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showStudents()">Alunos</a>
+                    <a id="lis" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="showGrades()">Notas</a>
                     <a id="bus" class="list-group-item list-group-item-action list-group-item-light p-3" (click)="reset()">Recarregar</a>
                 </div>
             </div>
             <div id="page-content-wrapper">
-                <div id="Prof" class="container-fluid" style="display: none;">
-                  <app-professores></app-professores>
+                <div id="Teachers" class="container-fluid" style="display: none;">
+                  <app-teachers></app-teachers>
                 </div>
-                <div id="Mat" class="container-fluid" style="display: none;">
-                  <app-materias></app-materias>
+                <div id="Subjects" class="container-fluid" style="display: none;">
+                  <app-subjects></app-subjects>
                 </div>
-                <div id="Turma" class="container-fluid" style="display: none;">
-                  <app-turmas></app-turmas>
+                <div id="Classes" class="container-fluid" style="display: none;">
+                  <app-classes></app-classes>
                 </div>
-                <div id="Aluno" class="container-fluid" style="display: none;">
-                  <app-alunos></app-alunos>
+                <div id="Students" class="container-fluid" style="display: none;">
+                  <app-students></app-students>
                 </div>
-                <div id="Notas" class="container-fluid" style="display: none;">
-                  <app-notas></app-notas>
+                <div id="Grades" class="container-fluid" style="display: none;">
+                  <app-grades></app-grades>
                 </div>
-                <div id="inicio" class="container-fluid">
+                <div id="Start" class="container-fluid">
                   <h1>Escola Processo seletivo</h1>
                   <hr>
                   <h2>Apresentação</h2>

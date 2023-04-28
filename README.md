@@ -1,4 +1,4 @@
-d# Escola-Processo-Seletivo
+# Escola-Processo-Seletivo
 
 Esse é o projeto para o processo seletivo conforme pedido. um front-end em angular 6+ (14), e um back-end em c#.
 
@@ -6,7 +6,7 @@ Esse é o projeto para o processo seletivo conforme pedido. um front-end em angu
 
 * Apesar da extenção no prazo de entrega que me permitiu trabalhar no projeto por um total de 6 dias. Esse tendo sido meu primeiro contato com o framework Angular me permitiu chegar apenas até esse ponto do front-end nesse tempo.
 * A parte para turmas não foram totalmente implementadas, pois nos processos de criação de funcionalidades e teste de falhas, com o tempo e nível de habilidade que eu tinnha disponíveis, eu só consegui implementar de forma funcional até esse ponto de cada uma.
-* Aa partes de professores e de Alunos foram as primeiras a ser criada tanto no back-end como no front-end de forma completa e funcional.
+* As partes de professores e de Alunos foram as primeiras a ser criada tanto no back-end como no front-end de forma completa e funcional.
 * As partes de notas e matérias não tiveram sua implementação iniciada no front-end devido as dificuldades encontradas na implementação das funcionalidades requeridas em turmas, que me tomaram a maior parte do tempo de projeto para implementar com sucesso.
 * A aplicação apresenta um erro de CORS na hora de se comunicar com o back-end se for aberta no navegador normalmente. Para contornar o pronblema, como todos os artigos que eu pude ler não me ajudaram a solucionar o problema de fato, eu passei a usar o seguinte comando através do Executar do Windows (Atalho "Win+R" no teclado) "chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security".
 
