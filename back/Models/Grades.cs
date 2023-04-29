@@ -9,12 +9,16 @@ namespace back.Models{
         [Required]
         public int idsubject {get; set;}
         [Required]
+        [Range(0.0, 10.0, ErrorMessage = "Notas devem estar entre 0 e 10.")]
         public double av1 {get; set;}
         [Required]
+        [Range(0.0, 10.0, ErrorMessage = "Notas devem estar entre 0 e 10.")]
         public double av2 {get; set;}
         [Required]
+        [Range(0.0, 10.0, ErrorMessage = "Notas devem estar entre 0 e 10.")]
         public double av3 {get; set;}
         [Required]
+        [Range(0.0, 10.0, ErrorMessage = "Notas devem estar entre 0 e 10.")]
         public double avf {get; set;}
 
         public bool aproved{get;set;}
