@@ -29,7 +29,4 @@ export class ClassesService {
   DeleteClass(id: Number): Observable<any>{
     return this.httpClient.delete(environment.classesUrl+'/'+id);
   }
-  InputStudent(student: studentModel): Observable<any>{
-    return this.httpClient.post(environment.studentsURL, student);
-  }
 }

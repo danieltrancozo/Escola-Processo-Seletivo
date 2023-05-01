@@ -42,7 +42,7 @@
         <td>{{student.active}}</td>
         <td>{{student.aproved}}</td>
         <td>{{student.final}}</td>
-        <td><button type="button" (click)="boletin(student.id)">Boletin</button></td>
+        <td><button type="button" (click)="boletin(student)">Boletin</button></td>
         <td><button type="button" (click)="Simular(student.id)">Simular</button></td>
     </table>
   </div>
@@ -50,14 +50,12 @@
 <div id="boletin">
   <div id="e2"><button type="button" class="btn btn-danger" (click)="e2()">X</button></div>
   <div id="TabelaBoletin">
-    <h2></h2>
+    <h2>Boletin</h2>
     <hr>
-    <h2></h2>
-    <table *ngFor="let grade of grades" class="t2">
+    <h2 id="studentName"></h2>
+    <table class="t2">
       <tr>
-        <th colspan="6">{{SubjectName()}}</th>
-      </tr>
-      <tr>
+        <th>Matéria</th>
         <th>AV1</th>
         <th>AV2</th>
         <th>AV3</th>
@@ -65,13 +63,14 @@
         <th>VF</th>
         <th>Media final</th>
       </tr>
-      <tr>
+      <tr *ngFor="let grade of grades">
+        <td>{{SubjectName(grade.idsubject)}}</td>
         <td>{{grade.av1}}</td>
         <td>{{grade.av2}}</td>
         <td>{{grade.av3}}</td>
-        <td>{{media()}}</td>
+        <td>{{media(grade)}}</td>
         <td>{{grade.avf}}</td>
-        <td>{{mediafinal()}}</td>
+        <td>{{mediafinal(grade)}}</td>
       </tr>
     </table>
   </div>
