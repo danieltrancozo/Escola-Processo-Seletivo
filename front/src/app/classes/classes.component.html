@@ -1,0 +1,77 @@
+<h1>Turmas</h1>
+<h2>Cadastro de turmas:</h2>
+<hr>
+<form action="">
+  <p>Volume: <input type="number" name="classVolume" id="classVolume" min="1" max="80" [(ngModel)]="clcr.volume"></p>
+  <button type="button" (click)="CreateClass(clcr)">Criar Turma</button>
+</form>
+<h2>Turmas Cadastradas:</h2>
+<hr>
+<table>
+  <tr>
+    <th>#ID</th>
+    <th>Quantidade de Alunos</th>
+    <th>Ativo</th>
+    <th colspan="3">Funções</th>
+  </tr>
+  <tr *ngFor="let class of classes">
+    <td>{{class.id}}</td>
+    <td>{{class.volume}}</td>
+    <td>{{class.active}}</td>
+    <td><button type="button" (click)="DeactivateClass(class.id, class.active)">Ativar/Desativar</button></td>
+    <td><button type="button" (click)="DeleteClass(class.id)">Excluir</button></td>
+    <td><button type="button" (click)="ShowClass(class.id)">Exibir alunos</button>
+  </tr>
+</table>
+<div id="students">
+  <div id="e1"><button type="button" class="btn btn-danger" (click)="e1()">X</button></div>
+  <div id="tableClass">
+    <h2 id="title"></h2>
+    <table id="chamada" class="t2">
+      <tr>
+        <th>#ID</th>
+        <th>Nome</th>
+        <th>Ativo</th>
+        <th>Aprovado</th>
+        <th>Final</th>
+        <th colspan="2">Funções</th>
+      </tr>
+      <tr *ngFor="let student of students">
+        <td>{{student.id}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.active}}</td>
+        <td>{{student.aproved}}</td>
+        <td>{{student.final}}</td>
+        <td><button type="button" (click)="boletin(student)">Boletin</button></td>
+        <td><button type="button" (click)="Simulate(student.id)">Simular</button></td>
+    </table>
+  </div>
+</div>
+<div id="boletin">
+  <div id="e2"><button type="button" class="btn btn-danger" (click)="e2()">X</button></div>
+  <div id="TabelaBoletin">
+    <h2>Boletin</h2>
+    <hr>
+    <h2 id="studentName"></h2>
+    <table class="t2">
+      <tr>
+        <th>Matéria</th>
+        <th>AV1</th>
+        <th>AV2</th>
+        <th>AV3</th>
+        <th>Média</th>
+        <th>VF</th>
+        <th>Media final</th>
+      </tr>
+      <tr *ngFor="let grade of grades">
+        <td>{{SubjectName(grade.idsubject)}}</td>
+        <td>{{grade.av1}}</td>
+        <td>{{grade.av2}}</td>
+        <td>{{grade.av3}}</td>
+        <td>{{grade.media}}</td>
+        <td>{{grade.avf}}</td>
+        <td>{{grade.mediaFinal}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

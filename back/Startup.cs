@@ -35,6 +35,17 @@ namespace back
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "back", Version = "v1" });
             });
+            services.AddCors(
+                opitions =>
+                {
+                    opitions.AddPolicy("AllowFront",
+                        builder =>
+                        {
+                            builder.WithOrigins("http://localhost:4200")
+                                   .AllowAnyMethod()
+                                   .AllowAnyHeader();
+                        });
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,6 +56,7 @@ namespace back
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "back v1"));
             }
+            app.UseCors("AllowFront");
 
             app.UseHttpsRedirection();
 

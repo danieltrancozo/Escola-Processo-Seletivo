@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using back.Data;
 
+#nullable disable
+
 namespace back.Migrations
 {
     [DbContext(typeof(DataContext))]
@@ -12,67 +14,32 @@ namespace back.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
 
-            modelBuilder.Entity("back.Models.Aluno", b =>
+            modelBuilder.Entity("back.Models.Class", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Ativo")
+                    b.Property<bool>("active")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("aprovado")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("idturma")
+                    b.Property<int>("volume")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.ToTable("alunos");
+                    b.ToTable("classes");
                 });
 
-            modelBuilder.Entity("back.Models.Materia", b =>
+            modelBuilder.Entity("back.Models.Grades", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("idprof")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("p1")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("p2")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("p3")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("materias");
-                });
-
-            modelBuilder.Entity("back.Models.Notas", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("aprovado")
+                    b.Property<bool>("aproved")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("av1")
@@ -90,15 +57,21 @@ namespace back.Migrations
                     b.Property<bool>("final")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("idaluno")
+                    b.Property<double>("finalMedia")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("idstudent")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("idmateria")
+                    b.Property<int>("idsubject")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("media")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
-                    b.ToTable("notas");
+                    b.ToTable("grades");
                 });
 
             modelBuilder.Entity("back.Models.Prof", b =>
@@ -107,33 +80,70 @@ namespace back.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ativo")
+                    b.Property<bool>("active")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("name")
                         .IsRequired()
+                        .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
-                    b.ToTable("professores");
+                    b.ToTable("teachers");
                 });
 
-            modelBuilder.Entity("back.Models.Turma", b =>
+            modelBuilder.Entity("back.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ativo")
+                    b.Property<bool>("Active")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("volume")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("aproved")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("idclass")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.ToTable("turmas");
+                    b.ToTable("students");
+                });
+
+            modelBuilder.Entity("back.Models.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("idprof")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("w1")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("w2")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("w3")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("subjects");
                 });
 #pragma warning restore 612, 618
         }

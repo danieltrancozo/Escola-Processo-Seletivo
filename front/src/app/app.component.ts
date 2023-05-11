@@ -9,52 +9,52 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'front';
-  prof: any;
-  mat: any;
-  turma: any;
-  aluno: any;
-  nota: any;
+  teacher: any;
+  subject: any;
+  class: any;
+  student: any;
+  grade: any;
   init: any;
   getDivs(){
-    this.prof = document.querySelector('div#Prof');
-    this.mat = document.querySelector('div#Mat');
-    this.turma = document.querySelector('div#Turma');
-    this.aluno = document.querySelector('div#Aluno');
-    this.nota = document.querySelector('div#Notas');
-    this.init = document.querySelector('div#inicio');
+    this.teacher = document.querySelector('div#Teachers');
+    this.subject = document.querySelector('div#Subjects');
+    this.class = document.querySelector('div#Classes');
+    this.student = document.querySelector('div#Students');
+    this.grade = document.querySelector('div#Grades');
+    this.init = document.querySelector('div#Start');
   }
   reset(){
     this.getDivs()
     this.init.style.display = 'inline';
-    this.prof.style.display = 'none';
-    this.mat.style.display = 'none';
-    this.turma.style.display = 'none';
-    this.aluno.style.display = 'none';
-    this.nota.style.display = 'none';
+    this.teacher.style.display = 'none';
+    this.subject.style.display = 'none';
+    this.class.style.display = 'none';
+    this.student.style.display = 'none';
+    this.grade.style.display = 'none';
   }
-  showProf(){
+  showTeachers(){
     this.reset();
-    this.prof.style.display = 'inline';
+    this.teacher.style.display = 'inline';
     this.init.style.display = 'none';
   }
-  showMat(){
+  showSubjects(){
     this.reset();
-    this.mat.style.display = 'inline';
+    this.subject.style.display = 'inline';
     this.init.style.display = 'none';
   }
-  showTurma(){
+  showClasses(){
     this.reset();
-    this.turma.style.display = 'inline';
+    this.class.style.display = 'inline';
     this.init.style.display = 'none';
   }
-  showAluno(){
+  showStudents(){
     this.reset();
-    this.aluno.style.display = 'inline';
+    this.student.style.display = 'inline';
     this.init.style.display = 'none';
   }
-  showNotas(){
+  showGrades(){
     this.reset();
-    this.nota.style.display = 'inline';
+    this.grade.style.display = 'inline';
     this.init.style.display = 'none';
   }
 }
