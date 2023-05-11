@@ -2,8 +2,8 @@
 <h2>Cadastro de turmas:</h2>
 <hr>
 <form action="">
-  <p>Quntidade de Alunos: <input type="text" name="VolumeClass" [(ngModel)]="clcr.volume"></p>
-  <button type="button" (click)="CreateClass(clcr.volume)">Cadastrar</button>
+  <p>Volume: <input type="number" name="classVolume" id="classVolume" min="1" max="80" [(ngModel)]="clcr.volume"></p>
+  <button type="button" (click)="CreateClass(clcr)">Criar Turma</button>
 </form>
 <h2>Turmas Cadastradas:</h2>
 <hr>
@@ -43,7 +43,7 @@
         <td>{{student.aproved}}</td>
         <td>{{student.final}}</td>
         <td><button type="button" (click)="boletin(student)">Boletin</button></td>
-        <td><button type="button" (click)="Simular(student.id)">Simular</button></td>
+        <td><button type="button" (click)="Simulate(student.id)">Simular</button></td>
     </table>
   </div>
 </div>
@@ -68,9 +68,9 @@
         <td>{{grade.av1}}</td>
         <td>{{grade.av2}}</td>
         <td>{{grade.av3}}</td>
-        <td>{{media(grade)}}</td>
+        <td>{{grade.media}}</td>
         <td>{{grade.avf}}</td>
-        <td>{{mediafinal(grade)}}</td>
+        <td>{{grade.mediaFinal}}</td>
       </tr>
     </table>
   </div>

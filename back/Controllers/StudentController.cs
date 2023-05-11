@@ -5,6 +5,7 @@ using back.Data;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using back.VeiwModels;
+using System;
 
 namespace back.Controllers{
     [ApiController]
@@ -52,8 +53,13 @@ namespace back.Controllers{
             var cl = await context.classes.AsNoTracking().FirstOrDefaultAsync(x=>x.Id==tu);
             if (cl!=null){
                 student.Name=no;
+                var cls = await context.classes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == student.idclass);
+                cls.volume--;
+                cl.volume++;
                 student.idclass = tu;
                 context.students.Update(student);
+                context.classes.Update(cl);
+                context.classes.Update(cls);
                 await context.SaveChangesAsync();
                 return Ok(student);
             }
@@ -65,37 +71,38 @@ namespace back.Controllers{
         public async Task<IActionResult> AtPutAsync([FromServices] DataContext context, 
         [FromRoute] int id, [FromRoute] bool at, [FromRoute] int t){
             var student = await context.students.AsNoTracking().FirstOrDefaultAsync(x=>x.Id==id);
+            var cl = await context.classes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == student.idclass);
             if (student==null) NotFound("Id inválido!");
             bool Active = student.Active;
-            if (Active != at)student.Active = at;
-            if (student.Active==false) student.idclass = 0;
-            if (student.Active==true) student.idclass = t;
+            if (Active != at) student.Active = at;
+            cl.volume = (student.Active == false) ? cl.volume-- : cl.volume++;
+            context.classes.Update(cl);
             context.students.Update(student);
             await context.SaveChangesAsync();
             return Ok(student);
-        }
-        [HttpPut(template:"students/{id}")]
-        public async Task<IActionResult> ApPutAsync([FromServices] DataContext context, [FromRoute] int id){
-            var student = await context.students.AsNoTracking().FirstOrDefaultAsync(x=>x.Id==id);
-            var grades = await context.grades.FromSqlRaw($"SELECT * FROM grades WHERE idstudent ={id}").ToListAsync();
-            if(grades==null) NotFound();
-            double ap=0;
-            for (int i = 0; i < grades.Count;i++){
-                if(grades[i].aproved) ap++;
-            }
-            double res = ap/grades.Count;
-            
-            if(res>=0.6)
-            student.aproved = true;
-            context.students.Update(student);
-            await context.SaveChangesAsync();
-            return student.aproved==true ? Ok("student Aprovado"): Ok("student reprovado");
         }
         [HttpDelete(template:"students/{id}")]
         public async Task<ActionResult> DeleteAsync([FromServices] DataContext context, [FromRoute] int id){
             var student = await context.students.FirstOrDefaultAsync(x=>x.Id==id);
             context.students.Remove(student);
             await context.SaveChangesAsync();
+            return Ok(student);
+        }
+        [HttpPut(template:"students/simulate/{id}")]
+        public async Task<ActionResult> SimulateAsync([FromServices] DataContext context, [FromRoute] int id){
+            var student = await context.students.FirstOrDefaultAsync(x => x.Id == id);
+            var grades = await context.grades.AsNoTracking().ToListAsync();
+            int count = 0 ;
+            int caproved = 0;
+            for(int i = 0; i < grades.Count; i++) {
+                if (grades[i].idstudent==student.Id){
+                    count++;
+                    if (grades[i].aproved == true){
+                        caproved++;
+                    }
+                }
+            }
+            student.aproved = (caproved < (count / 2)) ? true : false;
             return Ok(student);
         }
     }
