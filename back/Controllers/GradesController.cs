@@ -5,6 +5,7 @@ using back.Data;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using back.VeiwModels;
+using back.Migrations;
 
 namespace back.Controllers{
     [ApiController]
@@ -28,16 +29,30 @@ namespace back.Controllers{
                 return BadRequest(ModelState);
             }
             else{
+                var sub = await context.subjects.AsNoTracking().FirstOrDefaultAsync(x => x.Id == model.idsubject);
                 var grade = new Grades{
                     idstudent = model.idstudent,
                     idsubject = model.idsubject,
-                    av1 = 0,
-                    av2 = 0,
-                    av3 = 0,
+                    av1 = (model.av1 != null && model.av1 < 0) ? model.av1 : 0,
+                    av2 = (model.av2 != null && model.av2 < 0) ? model.av2 : 0,
+                    av3 = (model.av3 != null && model.av3 < 0) ? model.av3 : 0,
                     avf = 0,
+                    media = (model.av1 < 0 && model.av2 < 0 && model.av3 < 0) ? ((model.av1*sub.w1+model.av2*sub.w2+model.av3*sub.w3)/(sub.w1+sub.w2+sub.w3)) : 0,
+                    finalMedia = 0,
                     aproved = false,
                     final = false
                 };
+                if (grade.media < 6 && grade.media > 4)
+                {
+                    grade.avf = (model.avf != null && model.avf < 0) ? model.avf : 0;
+                    grade.finalMedia = (grade.avf == 0) ? grade.media : ((grade.media + grade.avf) / 2);
+                    grade.aproved = (grade.media >= 6 || grade.finalMedia >= 6) ? true : false;
+                    grade.final = (grade.avf < 0 ) ? true : false;
+                }
+                else
+                {
+                    grade.finalMedia = grade.media;
+                }
                 await context.grades.AddAsync(grade);
                 await context.SaveChangesAsync();
                 return Created(uri:$"v1/grades/{grade.Id}",grade);
@@ -56,6 +71,12 @@ namespace back.Controllers{
                     break;
                 case 3:
                     grade.av3=gr;
+                    if(grade.av1<0 && grade.av2 < 0)
+                    {
+                        var subject = await context.subjects.AsNoTracking().FirstOrDefaultAsync(x => x.Id == grade.idsubject);
+                        grade.media = (subject.w1*grade.av1 + subject.w2*grade.av2 + subject.w3*grade.av3)/(subject.w1+subject.w2+subject.w3);
+                        grade.aproved = (grade.media<=6) ? true : false;
+                    }
                     break;
                 default:
                     return BadRequest("O identificador de Avaliação deve estar entre 1 e 3.");
@@ -69,22 +90,20 @@ namespace back.Controllers{
         [FromRoute] int id, [FromRoute] double vf){
             var grade = await context.grades.AsNoTracking().FirstOrDefaultAsync(x=>x.Id==id);
             var subject = await context.subjects.AsNoTracking().FirstOrDefaultAsync(x=>x.Id==grade.idsubject);
-            double totalGrade = grade.av1*subject.w1+grade.av2*subject.w2+grade.av3*subject.w3;
-            double totalWeight = subject.w1+subject.w2+subject.w3;
-            double media = totalGrade/totalWeight;
-            if(media<=4){
+            grade.media = (grade.media == 0) ? (grade.av1 * subject.w1 + grade.av2 * subject.w2 + grade.av3 * subject.w3) / (subject.w1 + subject.w2 + subject.w3) : grade.media;
+            if(grade.media<=4){
                 grade.aproved=false;
                 grade.final=false;
             }
-            else if(media>=6){
+            else if(grade.media>=6){
                 grade.aproved=true;
                 grade.final=false;
             }
             else{
                 grade.final=true;
                 grade.avf = vf;
-                double newAverage = (media+vf)/2;
-                if(newAverage>=5){
+                grade.finalMedia = (grade.media+vf)/2;
+                if(grade.finalMedia>=5){
                     grade.aproved = true;
                 }
                 else{

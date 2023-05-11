@@ -6,5 +6,9 @@ namespace back.VeiwModels{
         public int idstudent { get; set; }
         [Required]
         public int idsubject {get; set;}
+        public double av1 { get; set;}
+        public double av2 { get; set;}
+        public double av3 { get; set;}
+        public double avf { get; set;}
     }
 }

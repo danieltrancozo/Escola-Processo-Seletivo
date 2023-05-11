@@ -27,4 +27,7 @@ export class StudentsService {
   DeleteStudent(id: Number): Observable<any>{
     return this.httpClient.delete(environment.studentsURL+'/'+id);
   }
+  SimulateStudent(id: Number): Observable<any>{
+    return this.httpClient.put(environment.studentsURL+'/simulate/'+id,null);
+  }
 }

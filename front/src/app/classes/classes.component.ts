@@ -41,10 +41,9 @@ export class ClassesComponent implements OnInit {
     this.title = document.getElementById('title');
     this.stname = document.getElementById('studentName');
   }
-  CreateClass(vol: Number){
-    console.log(this.clcr);
+  CreateClass(cl: classesModel){
     this.ClassesService
-        .CreateClass(this.clcr)
+        .CreateClass(cl)
         .subscribe(cls=>{
           this.clcr= new classesModel;
           this.temp = cls;
@@ -52,8 +51,6 @@ export class ClassesComponent implements OnInit {
           console.log('Erro ao cadastrar Turma!',Error);
         });
     this.ListClasses();
-    let cl = this.classes[this.classes.length-1];
-    this.addStudent(cl.id,cl.volume);
   }
   DeactivateClass(id: Number, at: boolean){
     at = !at;
@@ -82,27 +79,11 @@ export class ClassesComponent implements OnInit {
         }
       }
       this.students = a;
-      console.log(this.students.length)
       this.updateClasses(id)
       this.ListClasses()
     }, Error=>{
       console.log('Erro ao listar alunos!',Error);
     })
-  }
-  addStudent(id: Number, vol: Number){//função falhou!
-    delay(3)
-    let s = new studentModel
-    let v = Number(vol)
-    for(let i = 0; i < v; i++){
-      s.name = 'Aluno de Teste'+i;
-      s.idclass = id;
-      this.StudentsService.InputStudent(s).subscribe(st=>{
-        s = new studentModel;
-      },error=>{
-        console.log('Erro ao adcionar alunos.', error);
-      });
-    }
-    return(vol);
   }
   boletin(st: any){
     this.GradesService.ListGrades().subscribe(grads=>{
@@ -119,7 +100,13 @@ export class ClassesComponent implements OnInit {
     });
     this.b.style.display='inline';
   }
-  Simular(id: Number){}
+  Simulate(id: Number){
+    this.StudentsService.SimulateStudent(id).subscribe(st=>{
+      this.student = st;
+    }, error=>{
+      console.log('Erro ao simular aprovação do aluno.',error);
+    });
+  }
   e1(){
     this.t.style.display='none';
   }
@@ -138,32 +125,6 @@ export class ClassesComponent implements OnInit {
       this.subjects = sbjcts;
     });
     return(this.subjects[0].name);
-  }
-  media(grd: any){
-    this.SubjectsService.ListSubjects().subscribe(sbjs=>{
-      let sbs = [];
-      this.subjects = sbjs;
-      for(let i = 0; i < this.subjects.length; i++){
-        if(this.subjects[i].id == grd.idsubject){
-          sbs.push(this.subjects[i]);
-        }
-      }
-      this.subjects = sbs;
-    });
-    return((this.subjects[0].w1*grd.av1+this.subjects[0].w2*grd.av2+this.subjects[0].w3*grd.av3)/(this.subjects[0].w1+this.subjects[0].w2+this.subjects[0].w3));
-  }
-  mediafinal(grd: any){
-    let media;
-    media = this.media(grd);
-    if(media<=4){
-      return(media);
-    }
-    else if(media>=6){
-      return(media);
-    }
-    else{
-      return((media+grd.avf)/2);
-    }
   }
   updateClasses(id: Number){
     this.ClassesService.ShowClass().subscribe(students=>{

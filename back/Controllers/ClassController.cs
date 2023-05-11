@@ -33,7 +33,16 @@ namespace back.Controllers{
                     active = true
                 };
                 await context.classes.AddAsync(classs);
-                await context.SaveChangesAsync();
+                var student = new Student();
+                student.idclass = classs.Id;
+                student.Active = true;
+                student.aproved = false;
+                for (int i = 1; i<= classs.volume; i++)
+                {
+                    student.Name = "Aluno de Teste "+ i.ToString();
+                    await context.students.AddAsync(student);
+                    await context.SaveChangesAsync();
+                }
                 return Created(uri:$"v1/classes/{classs.Id}",classs);
                 }
             }

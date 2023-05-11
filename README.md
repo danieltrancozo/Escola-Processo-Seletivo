@@ -1,20 +1,21 @@
 # Escola-Processo-Seletivo
 
-Esse é o projeto para o processo seletivo conforme pedido. um front-end em angular 6+ (14), e um back-end em c#.
+Esse é o projeto para o processo seletivo conforme pedido. um front-end em angular 6+ (15.2.6), e um back-end em c#(dotnet 7.0).
 
 # Avisos Angular:
 
-* Apesar da extenção no prazo de entrega que me permitiu trabalhar no projeto por um total de 6 dias. Esse tendo sido meu primeiro contato com o framework Angular me permitiu chegar apenas até esse ponto do front-end nesse tempo.
-* A parte para turmas não foram totalmente implementadas, pois nos processos de criação de funcionalidades e teste de falhas, com o tempo e nível de habilidade que eu tinnha disponíveis, eu só consegui implementar de forma funcional até esse ponto de cada uma.
-* As partes de professores e de Alunos foram as primeiras a ser criada tanto no back-end como no front-end de forma completa e funcional.
-* As partes de notas e matérias não tiveram sua implementação iniciada no front-end devido as dificuldades encontradas na implementação das funcionalidades requeridas em turmas, que me tomaram a maior parte do tempo de projeto para implementar com sucesso.
-* A aplicação apresenta um erro de CORS na hora de se comunicar com o back-end se for aberta no navegador normalmente. Para contornar o pronblema, como todos os artigos que eu pude ler não me ajudaram a solucionar o problema de fato, eu passei a usar o seguinte comando através do Executar do Windows (Atalho "Win+R" no teclado) "chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security".
+* Todas as partes foram implementadas.
+* O volume das turmas ainda não é atualizado dinamicamente na aplicação de acordo com as mudanças feitas na parte dos alunos.
+* Criar uma turma com volume maior do que um aluno ainda resulta na criação de um único aluno. Mas, eu ainda não tenho certeza se isso se da por um erro no código, ou porque o meu computador tem dificuldade em processar a execução da api, da aplicação, de dois terminais, (pelo menos) um IDE e o navegador.
+* Ao criar notas, é possível lançar todas as notas de todas as provas de uma única vez, assim como é possivel criar as notas sem nenhuma nota de prova.
+* Ao atualizar notas o mais recomendado é lançar uma prova por vez em ordem para que, ao lançar a nota da terceira prova, seja atualizada a média e situação do aluno naquela matéria.
+* A função de simular testa se o aluno tem aprovação em mais da metade das matérias em que ele tem notas registradas.
 
 # Avisos DotNet:
 
-* Algumas vezes tive problemas com a estrutura da url em métodos PUT que já haviam sido verificados como funcionais préviamente. A única solução que encontrei nesses casos foi, parar o servidor, aplicar o comendo "dotnet clean" pelo terminal na pasta do projeto e reiniciar o servidor com o comando "dotnet run". Caso isso também falhasse, eu apenas alterava a forma de separar parâmetros passados pela url novamente.
 * A ordem de criação de entradas prevista no fluxo de aplicação é Professor, Matéria (Requer um id de professor válido!), Turma, Aluno (Requer um id de turma válido!) e, por fim, Notas (Requer um id de aluno e um id de matéria válidos!).
-* Originalmente eu havia planejado que o ato de alterar a turma de um aluno, ou o ato de desativar o mesmo, tivesse um efeito em cascata sobre a turma, reduzindo o valor apontado como seu total de alunos, bem como, aumentando o inidacador de alunos na nova turma caso o aluno fosse transferido. Porém o código não funcionava como desejado e foi apenas parcialmente implementado através da função "updateTurma()" no front-end.
+* Qualquer mudança na tabela de alunos que altere o status de ativo ou a turma de um aluno, tambem altera o volume da turma associada ao aluno.
+* A criação de alunos para preencher uma turma recem criada ainda apresenta o problema de criar um único aluno independentemente do valor de volume da turma.
 
 # Classes:
 
@@ -43,7 +44,7 @@ Esse é o projeto para o processo seletivo conforme pedido. um front-end em angu
 
 * 1- Abra dois terminais dentro da pasta em que esse arquivo está localizado.
 * 2- Em um dos terminiais digite o comando "cd back" e aperte a tecla enter.
-* 3- Nesse mesmo terminal digite o comando "dotnet clean" e aperte a tecla enter. (Certifique-se de que você possui o dotnet core instalado na versão 5.0 para rodar o projeto!)
+* 3- Nesse mesmo terminal digite o comando "dotnet clean" e aperte a tecla enter. (Certifique-se de que você possui o dotnet core instalado na versão 7.0 para rodar o projeto!)
 * 4- Agora digite o comando "dotnet run" e aperte a tecla enter.
 * 5- O serivdor deve ter sido inicializado em "http://localhost:5001".
 * 6- Em seu navegador digite na barra de endereço "http://localhost:5001/swagger/index.html" e aperte a tecla enter para verificar as funcionalidades do servidor.
@@ -54,5 +55,10 @@ Esse é o projeto para o processo seletivo conforme pedido. um front-end em angu
 * 11- Digite o seguinte comando no espaço de input da ferramenta "chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security" e pressione "Ok" para executar.
 * 12- Na barra de navegação do navegador que acaba de abrir digite "http://localhost:4200" e pressione enter para acessar a aplicação.
 * 13- Use os botões laterais para navegar entre as partes da aplicação.
+
+# Alerta!
+
+* A execução só flui desse jeito caso você já possua a versão mais recente do Node que seja compatível com a versão do angular usada no projeto e a instalação do front já tenha ocorrido com sucesso. Caso contrário, isntale o NodeJS(v18.15.0) no seu computador e, após o passo 7 use a sequência de comandos "npm install", "npm update" e "npm audit fix" para instalar o projeto corretamente. depois siga o restante dos passos.
+* Originalmente, a ideia seria adicionar um método de controle para garantir que um mesmo aluno não tivesse dois registros de notas de uma mesma matéria, mas, eu optei por me dedicar a tornar outro projeto operacional por agora.
 
 # Esse foi o meu projeto. Espero que gostem.
